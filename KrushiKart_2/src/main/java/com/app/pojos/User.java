@@ -28,6 +28,8 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -64,9 +66,9 @@ public class User{
 	@Column(length = 20, nullable = false) 
 	private String password;
 	
-	@Length(min=12,message = "please enter valid contact number")
-	@Column(name="conact_No",nullable = false)
-	private int contactNumber;
+	//@Length(min=10,message = "please enter valid contact number")
+	@Column(name="conact_No",nullable = true,length = 25,unique = true)
+	private String contactNumber;
 	
 	@Enumerated(EnumType.STRING) 
 	@Column(name = "user_role", length = 30)
@@ -77,11 +79,15 @@ public class User{
 	@Column(name="DateOfBirth",nullable = false)
 	private LocalDate DOB;
 	
-	
+	@Column(length = 20)
+	private String city;
+	@Column(length = 20)
+	private String state;
 	// User(Customer) HAS-A Cart User 1---->1 Cart
 	@OneToOne(mappedBy = "cartOwner", cascade = CascadeType.ALL, orphanRemoval = true)
 	private ShoppingCart cart;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="user_address")
 	private Address address;

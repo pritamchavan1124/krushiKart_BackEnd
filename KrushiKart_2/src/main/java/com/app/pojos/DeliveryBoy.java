@@ -20,6 +20,9 @@ import lombok.Setter;
 
 public class DeliveryBoy extends User {
 
+	@Column(length = 40)
+	private String licenseNO;
+	
 	public String getLicenseNO() {
 		return licenseNO;
 	}
@@ -28,8 +31,7 @@ public class DeliveryBoy extends User {
 		this.licenseNO = licenseNO;
 	}
 
-	@Column(length = 40)
-	private String licenseNO;
+	
 
 	// No-Agrs constructor
 	public DeliveryBoy() {
