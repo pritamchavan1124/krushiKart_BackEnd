@@ -67,4 +67,10 @@ public class ProdServiceInterface implements ProductInterface {
 		 return Repo.findByProdCategory(categorys);
 	}
 
+	@Override
+	public Products getProductById(Long prodID) {
+		Products product=Repo.findById(prodID).get();
+		return product;
+	}
+
 }

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dto.SellerDto;
+import com.app.pojos.Role;
 import com.app.pojos.SellerReg;
 import com.app.repositiory.ISellerRepositiory;
 
@@ -41,7 +42,7 @@ public class SupplierServiceImpl implements ISupplierService {
 	@Override
 	public List<SellerDto> getAllSelles() {
 		log.info("In Supplier service implimentation : getAllSupplier ");
-		List<SellerReg> sellerList = sellerRepo.findAll();
+		List<SellerReg> sellerList = sellerRepo.findByUserRole(Role.ROLE_SELLER);
 		List<SellerDto> seller = new ArrayList<>();
 		for (SellerReg sell : sellerList) {
 			seller.add(mapper.map(sell, SellerDto.class));

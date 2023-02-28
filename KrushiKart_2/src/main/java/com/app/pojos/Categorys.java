@@ -21,11 +21,11 @@ import lombok.ToString;
 
 @Entity
 @Table(name="category_tbl")
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-@ToString
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@Getter
+//@Setter
+//@ToString
 public class Categorys extends BaseEntity{
 	
 	@Column(name="cat_Name",length = 50,nullable = false,unique = true)
@@ -51,6 +51,88 @@ public class Categorys extends BaseEntity{
 		this.activeStatus = activeStatus;
 	}
 	
+	
+
+	public Categorys(String categoryName, String categoryDesc, boolean activeStatus, String imageUrl,
+			List<Products> productsList) {
+		super();
+		this.categoryName = categoryName;
+		this.categoryDesc = categoryDesc;
+		this.activeStatus = activeStatus;
+		this.imageUrl = imageUrl;
+		this.productsList = productsList;
+	}
+	
+
+
+
+	@Override
+	public String toString() {
+		return "Categorys [categoryName=" + categoryName + ", categoryDesc=" + categoryDesc + ", activeStatus="
+				+ activeStatus + ", imageUrl=" + imageUrl + ", productsList=" + productsList + "]";
+	}
+
+
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+
+
+	public String getCategoryDesc() {
+		return categoryDesc;
+	}
+
+
+
+	public void setCategoryDesc(String categoryDesc) {
+		this.categoryDesc = categoryDesc;
+	}
+
+
+
+	public boolean isActiveStatus() {
+		return activeStatus;
+	}
+
+
+
+	public void setActiveStatus(boolean activeStatus) {
+		this.activeStatus = activeStatus;
+	}
+
+
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+
+
+	public List<Products> getProductsList() {
+		return productsList;
+	}
+
+
+
+	public void setProductsList(List<Products> productsList) {
+		this.productsList = productsList;
+	}
+
+
 
 	//helper method
 	public void addProduct(Products prod) {

@@ -14,7 +14,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import lombok.Getter;
 
 @Entity
-@Getter
+
 @Table(name = "purchase_bill")
 public class PurchaseBill extends BaseEntity {
 
@@ -93,5 +93,56 @@ public class PurchaseBill extends BaseEntity {
 	public void setUnitPrice(double unitPrice) {
 		this.unitPrice = unitPrice;
 	}
+
+	public double getTotalAmount() {
+		return totalAmount;
+	}
+
+	public LocalDate getBillDate() {
+		return billDate;
+	}
+
+	public ProductSeller getSupplier() {
+		return supplier;
+	}
+
+	public Products getProduct() {
+		return product;
+	}
+
+	public LocalDate getManfDate() {
+		return manfDate;
+	}
+
+	public LocalDate getExpDate() {
+		return expDate;
+	}
+
+	public String getBatchNo() {
+		return batchNo;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public double getUnitPrice() {
+		return unitPrice;
+	}
+
+	public PurchaseBill(double totalAmount, LocalDate billDate, ProductSeller supplier, Products product,
+			LocalDate manfDate, LocalDate expDate, String batchNo, int quantity, double unitPrice) {
+		super();
+		this.totalAmount = totalAmount;
+		this.billDate = billDate;
+		this.supplier = supplier;
+		this.product = product;
+		this.manfDate = manfDate;
+		this.expDate = expDate;
+		this.batchNo = batchNo;
+		this.quantity = quantity;
+		this.unitPrice = unitPrice;
+	}
+	
 
 }

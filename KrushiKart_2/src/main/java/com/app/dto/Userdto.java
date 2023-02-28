@@ -10,7 +10,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.validation.annotation.Validated;
 
+import com.app.pojos.Address;
 import com.app.pojos.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -20,6 +22,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@Validated
 public class Userdto {
 	
 	@JsonProperty(access = Access.READ_ONLY)
@@ -48,9 +51,10 @@ public class Userdto {
 	@NotNull
 	private Role userRole;
 
-	private String city;
-
-	private String state;
+	private Address address;
+//	private String city;
+//
+//	private String state;
 
 	//private String imagePath;
 

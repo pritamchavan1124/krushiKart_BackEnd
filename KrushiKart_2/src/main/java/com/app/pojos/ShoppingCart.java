@@ -29,8 +29,8 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "carts")
-@Getter
-@Setter
+//@Getter
+//@Setter
 @ToString(exclude = {"cartOwner","cartItems"})
 public class ShoppingCart extends BaseEntity {
 
@@ -58,5 +58,66 @@ public class ShoppingCart extends BaseEntity {
 	@JsonIgnore
 	@OneToMany(mappedBy = "cart",cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<CartItem> cartItems=new ArrayList<>();
+	
+	public ShoppingCart(int totalItems, double totalCartPrice, LocalDate createdOn, LocalDate lastUpdatedOn,
+			User cartOwner, List<CartItem> cartItems) {
+		super();
+		this.totalItems = totalItems;
+		this.totalCartPrice = totalCartPrice;
+		this.createdOn = createdOn;
+		this.lastUpdatedOn = lastUpdatedOn;
+		this.cartOwner = cartOwner;
+		this.cartItems = cartItems;
+	}
+
+	public int getTotalItems() {
+		return totalItems;
+	}
+
+	public void setTotalItems(int totalItems) {
+		this.totalItems = totalItems;
+	}
+
+	public double getTotalCartPrice() {
+		return totalCartPrice;
+	}
+
+	public void setTotalCartPrice(double totalCartPrice) {
+		this.totalCartPrice = totalCartPrice;
+	}
+
+	public LocalDate getCreatedOn() {
+		return createdOn;
+	}
+
+	public void setCreatedOn(LocalDate createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public LocalDate getLastUpdatedOn() {
+		return lastUpdatedOn;
+	}
+
+	public void setLastUpdatedOn(LocalDate lastUpdatedOn) {
+		this.lastUpdatedOn = lastUpdatedOn;
+	}
+
+	public User getCartOwner() {
+		return cartOwner;
+	}
+
+	public void setCartOwner(User cartOwner) {
+		this.cartOwner = cartOwner;
+	}
+
+	public List<CartItem> getCartItems() {
+		return cartItems;
+	}
+
+	public void setCartItems(List<CartItem> cartItems) {
+		this.cartItems = cartItems;
+	}
+	
+	
 	
 }

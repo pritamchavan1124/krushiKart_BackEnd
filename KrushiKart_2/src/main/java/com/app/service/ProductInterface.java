@@ -24,4 +24,8 @@ public interface ProductInterface {
 
 	List<Products> getAllProductByProducts(String catName);
 
+
+
+	Products getProductById(Long prodID);
+
 }

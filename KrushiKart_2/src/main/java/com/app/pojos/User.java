@@ -38,10 +38,10 @@ import lombok.ToString;
 @Entity 
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "users_tbl") 
-@NoArgsConstructor
-@Getter
-@Setter
-@ToString(exclude = {"cart"})
+//@NoArgsConstructor
+//@Getter
+//@Setter
+//@ToString(exclude = {"cart"})
 public class User{
 	
 	@Id
@@ -98,5 +98,172 @@ public class User{
 		this.cart = cart;
 		cart.setCartOwner(this);
 	}
+
+
+	public User(Integer id, @Length(min = 4, max = 20, message = "Invalid or Blank first name!!!!!!") String firstName,
+			@NotBlank(message = "Last  name can't be blank") String lastName, String email, int age, String password,
+			String contactNumber, Role userRole, LocalDate dOB, String city, String state, ShoppingCart cart,
+			Address address) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.age = age;
+		this.password = password;
+		this.contactNumber = contactNumber;
+		this.userRole = userRole;
+		DOB = dOB;
+		this.city = city;
+		this.state = state;
+		this.cart = cart;
+		this.address = address;
+	}
+
+
+	public User() {
+		super();
+	}
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public int getAge() {
+		return age;
+	}
+
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public String getContactNumber() {
+		return contactNumber;
+	}
+
+
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
+	}
+
+
+	public Role getUserRole() {
+		return userRole;
+	}
+
+
+	public void setUserRole(Role userRole) {
+		this.userRole = userRole;
+	}
+
+
+	public LocalDate getDOB() {
+		return DOB;
+	}
+
+
+	public void setDOB(LocalDate dOB) {
+		DOB = dOB;
+	}
+
+
+	public String getCity() {
+		return city;
+	}
+
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+
+	public String getState() {
+		return state;
+	}
+
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+
+	public ShoppingCart getCart() {
+		return cart;
+	}
+
+
+	public void setCart(ShoppingCart cart) {
+		this.cart = cart;
+	}
+
+
+	public Address getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", age="
+				+ age + ", password=" + password + ", contactNumber=" + contactNumber + ", userRole=" + userRole
+				+ ", DOB=" + DOB + ", city=" + city + ", state=" + state + ", cart=" + cart + ", address=" + address
+				+ "]";
+	}
+	
+	
 
 }

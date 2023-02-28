@@ -14,8 +14,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
+
 public class Payment extends BaseEntity {
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -36,5 +35,46 @@ public class Payment extends BaseEntity {
 		return "Payment [paymentDate=" + paymentDate + ", paymentStatus=" + paymentStatus + ", paymentTyep="
 				+ paymentType + "]";
 	}
+
+	public Payment(LocalDate paymentDate, PaymentStatus paymentStatus, PaymentType paymentType, Orders order) {
+		super();
+		this.paymentDate = paymentDate;
+		this.paymentStatus = paymentStatus;
+		this.paymentType = paymentType;
+		this.order = order;
+	}
+
+	public LocalDate getPaymentDate() {
+		return paymentDate;
+	}
+
+	public void setPaymentDate(LocalDate paymentDate) {
+		this.paymentDate = paymentDate;
+	}
+
+	public PaymentStatus getPaymentStatus() {
+		return paymentStatus;
+	}
+
+	public void setPaymentStatus(PaymentStatus paymentStatus) {
+		this.paymentStatus = paymentStatus;
+	}
+
+	public PaymentType getPaymentType() {
+		return paymentType;
+	}
+
+	public void setPaymentType(PaymentType paymentType) {
+		this.paymentType = paymentType;
+	}
+
+	public Orders getOrder() {
+		return order;
+	}
+
+	public void setOrder(Orders order) {
+		this.order = order;
+	}
+	
 
 }

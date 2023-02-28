@@ -50,4 +50,8 @@ public class ProductController {
 	public List<Products> getAllProductByCategory(@PathVariable String catName){
 		return prodImpl.getAllProductByProducts(catName);
 	}
+	@GetMapping("/prod/{prodID}")
+	public Products getProductById(@PathVariable Long prodID) {
+		return prodImpl.getProductById(prodID);
+	}
 }
