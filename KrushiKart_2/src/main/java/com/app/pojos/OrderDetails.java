@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -19,10 +20,10 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+//@Getter
+//@Setter
+//@NoArgsConstructor
+//@AllArgsConstructor
 @Table(name = "order_details")
 public class OrderDetails extends BaseEntity {
 
@@ -33,7 +34,7 @@ public class OrderDetails extends BaseEntity {
 	
 //	@JsonIgnore
 //	@ManyToMany
-////	@JoinColumn(name = "product_id")
+//	@JoinColumn(name="product_id")
 //	private List<Products> productlist=new ArrayList<Products>();
 	
 
@@ -53,5 +54,59 @@ public class OrderDetails extends BaseEntity {
 	public String toString() {
 		return "OrderItems [quantity=" + quantity + ", unitPrice=" + unitPrice + "]";
 	}
+
+	public OrderDetails(Orders order, int quantity, double unitPrice, double subtotal, String productName) {
+		super();
+		this.order = order;
+		this.quantity = quantity;
+		this.unitPrice = unitPrice;
+		this.subtotal = subtotal;
+		this.productName = productName;
+	}
+
+	public OrderDetails() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Orders getOrder() {
+		return order;
+	}
+
+	public void setOrder(Orders order) {
+		this.order = order;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public double getUnitPrice() {
+		return unitPrice;
+	}
+
+	public void setUnitPrice(double unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+
+	public double getSubtotal() {
+		return subtotal;
+	}
+
+	public void setSubtotal(double subtotal) {
+		this.subtotal = subtotal;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	
 
 }

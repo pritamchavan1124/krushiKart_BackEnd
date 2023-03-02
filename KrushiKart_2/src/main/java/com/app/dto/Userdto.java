@@ -52,6 +52,8 @@ public class Userdto {
 	private Role userRole;
 
 	private Address address;
+	
+	private int age;
 //	private String city;
 //
 //	private String state;

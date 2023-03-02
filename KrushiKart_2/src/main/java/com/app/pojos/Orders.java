@@ -24,8 +24,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
+//@Getter
+//@Setter
 public class Orders extends BaseEntity {
 	
 	@CreationTimestamp 
@@ -93,6 +93,79 @@ public class Orders extends BaseEntity {
 		return "Order [totalAmount=" + totalAmount + ", orderDate=" + orderDate + ", orderStatus=" + orderStatus
 				+ ", deliveryDate=" + deliveryDate + "]";
 	}
+
+	public LocalDate getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(LocalDate orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public OrderStatus getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(OrderStatus orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
+	public LocalDate getDeliveryDate() {
+		return deliveryDate;
+	}
+
+	public void setDeliveryDate(LocalDate deliveryDate) {
+		this.deliveryDate = deliveryDate;
+	}
+
+	public double getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(double totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+	public String getRazorPayOrderId() {
+		return razorPayOrderId;
+	}
+
+	public void setRazorPayOrderId(String razorPayOrderId) {
+		this.razorPayOrderId = razorPayOrderId;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public DeliveryBoy getDeliverBoy() {
+		return deliverBoy;
+	}
+
+	public void setDeliverBoy(DeliveryBoy deliverBoy) {
+		this.deliverBoy = deliverBoy;
+	}
+
+	public Address getDeliveryAddress() {
+		return deliveryAddress;
+	}
+
+	public void setDeliveryAddress(Address deliveryAddress) {
+		this.deliveryAddress = deliveryAddress;
+	}
+
+	public Set<OrderDetails> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(Set<OrderDetails> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
+	
 
 	
 

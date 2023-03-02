@@ -13,28 +13,26 @@ import lombok.ToString;
 //@ToString
 public class DeleteAccountDto {
 
-	private int userId;
+	private String email;
 
 	private String oldPassword;
 
-	public DeleteAccountDto(int userId, String oldPassword) {
+	public DeleteAccountDto(String email, String oldPassword) {
 		super();
-		this.userId = userId;
+		this.email = email;
 		this.oldPassword = oldPassword;
 	}
-	
 
 	public DeleteAccountDto() {
 		super();
 	}
 
-
-	public int getUserId() {
-		return userId;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getOldPassword() {
@@ -45,10 +43,13 @@ public class DeleteAccountDto {
 		this.oldPassword = oldPassword;
 	}
 
-
 	@Override
 	public String toString() {
-		return "DeleteAccountDto [userId=" + userId + ", oldPassword=" + oldPassword + "]";
+		return "DeleteAccountDto [email=" + email + ", oldPassword=" + oldPassword + "]";
 	}
+
+	
+
+	
 	
 }

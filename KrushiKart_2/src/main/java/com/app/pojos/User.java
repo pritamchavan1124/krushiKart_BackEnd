@@ -57,13 +57,13 @@ public class User{
 	@NotBlank(message = "Last  name can't be blank")
 	private String lastName;
 	
-	@Column(length = 25, unique = true) 
+	@Column(length = 50, unique = true) 
 	private String email;
 	
 	@Column(name="user_age")
 	private int age;
 	
-	@Column(length = 20, nullable = false) 
+	@Column(length = 100, nullable = false) 
 	private String password;
 	
 	//@Length(min=10,message = "please enter valid contact number")

@@ -18,6 +18,10 @@ public interface IUserService {
 
 	String deleteUserDetails(DeleteAccountDto account);
 
+	Userdto getUserByEmail(String userEmail);
+
+	Userdto getUserById(int userId);
+
 	
 
 	

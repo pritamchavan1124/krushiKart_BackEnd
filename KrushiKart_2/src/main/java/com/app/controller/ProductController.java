@@ -3,6 +3,7 @@ package com.app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,7 @@ import com.app.pojos.Categorys;
 import com.app.pojos.Products;
 import com.app.service.ProductInterface;
 
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/prod")
 public class ProductController {
@@ -32,18 +33,19 @@ public class ProductController {
 		return prodImpl.getAllSeedsData();
 	}
 
-	@PostMapping
+	@PostMapping("/add")
 	public void addNewProduct(@RequestBody Products Obj,String catName) {
 		prodImpl.addNewSeeds(Obj,catName);
 	}
 
 	@DeleteMapping("/{prodId}")
-	public void deleteSeedById(@PathVariable Long prodId) {
+	public void deleteProductById(@PathVariable Long prodId) {
 		prodImpl.removeSeedDetails(prodId);
 	}
-
+	
+	//@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PutMapping
-	public void updateSeedInfo(@RequestBody Products prodId) {
+	public void updateProductInfo(@RequestBody Products prodId) {
 		prodImpl.updateSeedProdDetails(prodId);
 	}
 	@GetMapping("/{catName}")
@@ -54,4 +56,5 @@ public class ProductController {
 	public Products getProductById(@PathVariable Long prodID) {
 		return prodImpl.getProductById(prodID);
 	}
+	
 }

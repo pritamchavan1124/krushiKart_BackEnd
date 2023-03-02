@@ -44,6 +44,10 @@ public class Payment extends BaseEntity {
 		this.order = order;
 	}
 
+	public Payment() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public LocalDate getPaymentDate() {
 		return paymentDate;
 	}

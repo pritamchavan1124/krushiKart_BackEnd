@@ -10,7 +10,7 @@ import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.password.PasswordEncoder;
-
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.app.custom_Exceptions.UserHandlingException;
@@ -21,6 +21,7 @@ import com.app.pojos.Role;
 import com.app.pojos.User;
 import com.app.repositiory.AddressRepository;
 import com.app.repositiory.UserRepositiory;
+import com.app.service.ShoppingCart.IShoppingCartServices;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,8 +30,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UserServiceImplement implements IUserService {
 
-//	@Autowired
-//	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private IShoppingCartServices cartService;
 
 	@Autowired
 	private ModelMapper mapper;
@@ -47,7 +51,7 @@ public class UserServiceImplement implements IUserService {
 		Address address = userObj.getAddress();
 		addressRepo.save(address);
 		User user = mapper.map(userObj, User.class);
-		//user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		User addedUser=userRepository.save(user);
 		// map entity --> dto
 		return mapper.map(addedUser, Userdto.class);
@@ -94,16 +98,27 @@ public class UserServiceImplement implements IUserService {
 
 	@Override
 	public String deleteUserDetails(DeleteAccountDto account) {
-		log.info("In user service implimentation : delete user ById ");
 		String mesg = "Deletion of user details failed!!!!!!!!!!!";
-		User findUser = userRepository.findById(account.getUserId())
-				.orElseThrow(() -> new UserHandlingException("Invalid user ID"));
-//		if (encoder.matches(account.getOldPassword(), findUser.getPassword())) {
-//			cartService.deleteByUser(findUser.getId());
-//			userRepository.deleteById(findUser.getId());
-//			mesg = "user details deleted successfully , for User id :" + findUser.getId();
-//		}
+		User findUser = userRepository.findByEmail(account.getEmail())
+				.orElseThrow(() -> new UserHandlingException("Invalid user Email"));
+		if (passwordEncoder.matches(account.getOldPassword(), findUser.getPassword())) {
+			cartService.deleteByUser(findUser.getId());
+			userRepository.deleteById(findUser.getId());
+			mesg = "user details deleted successfully , for User id :" + findUser.getId();
+		}
 		return mesg;
 
 	}
+
+	@Override
+	public Userdto getUserByEmail(String userEmail) {
+		User user = userRepository.findByEmail(userEmail).orElseThrow(() -> new RuntimeException("User Not Found"));
+		return mapper.map(user, Userdto.class);
+	}
+
+	@Override
+	public Userdto getUserById(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	} 
 }

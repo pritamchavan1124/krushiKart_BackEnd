@@ -24,51 +24,48 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name="prod_tbl")
+@Table(name = "prod_tbl")
 //@NoArgsConstructor
 //@AllArgsConstructor
 //@Getter
 //@Setter
 //@ToString
-public class Products extends BaseEntity{
-	
-	@Column(name="prod_Name",length = 100,nullable = false)
+public class Products extends BaseEntity {
+
+	@Column(name = "prod_Name", length = 200, nullable = false)
 	private String prodName;
-	
-	@Column(name="prod_Desc",length = 200,nullable = false)
+
+	@Column(name = "prod_Desc", length = 500, nullable = false)
 	private String prodDesc;
-	
-	@Column(name="prod_price",nullable = false)
+
+	@Column(name = "prod_price", nullable = false)
 	private double unitPrice;
-	
-	@Column(name="prod_Quantity",nullable = false)
+
+	@Column(name = "prod_Quantity", nullable = false)
 	private int prodQuantity;
-	
+
 	@Column(length = 150)
 	private String imageUrl;
-	
-	@Column(name="prod_weight")
+
+	@Column(name = "prod_weight")
 	private double prodWeight;
-	
-	@Column(name="Special_Specification",length = 500)
+
+	@Column(name = "Special_Specification", length = 500)
 	private String special_specification;
-	
-	@Column(name="manufacture_Date")
+
+	@Column(name = "manufacture_Date")
 	private LocalDate mfgDate;
-	
-	//for category we use bi-directional trancation
+
+	// for category we use bi-directional trancation
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name="Category_cid")
+	@JoinColumn(name = "Category_cid")
 	private Categorys prodCategory;
-	
+
 	@JsonIgnore
 	@ManyToMany
-	@JoinTable(name = "orders_like", 
-			  joinColumns = @JoinColumn(name = "product_id"), 
-			  inverseJoinColumns = @JoinColumn(name = "orderDetails_id"))
-	private List<OrderDetails> orderDetails=new ArrayList<OrderDetails>();
-
+	@JoinTable(name = "orders_like", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "orderDetails_id"))
+	private List<OrderDetails> orderDetails = new ArrayList<OrderDetails>();
 
 //	@JsonIgnore
 //	@ManyToMany
@@ -76,138 +73,118 @@ public class Products extends BaseEntity{
 //					joinColumns=@JoinColumn(name="product_ids"),
 //					inverseJoinColumns = @JoinColumn(name = "seller_id"))
 //	private List<ProductSeller> sellerProdList=new ArrayList<ProductSeller>();
-	
-	//***************************************
-	//hepler method for adding seed category
+
+	// ***************************************
+	// hepler method for adding seed category
 	public void addNewCategory(Categorys CatObj) {
 		this.setProdCategory(CatObj);
-		
+
 	}
 
+	public Products(String prodName, String prodDesc, double unitPrice, int prodQuantity, String imageUrl,
+			double prodWeight, String special_specification, LocalDate mfgDate, Categorys prodCategory,
+			List<OrderDetails> orderDetails) {
+		super();
+		this.prodName = prodName;
+		this.prodDesc = prodDesc;
+		this.unitPrice = unitPrice;
+		this.prodQuantity = prodQuantity;
+		this.imageUrl = imageUrl;
+		this.prodWeight = prodWeight;
+		this.special_specification = special_specification;
+		this.mfgDate = mfgDate;
+		this.prodCategory = prodCategory;
+		this.orderDetails = orderDetails;
+	}
 
-public Products(String prodName, String prodDesc, double unitPrice, int prodQuantity, String imageUrl,
-		double prodWeight, String special_specification, LocalDate mfgDate, Categorys prodCategory,
-		List<OrderDetails> orderDetails) {
-	super();
-	this.prodName = prodName;
-	this.prodDesc = prodDesc;
-	this.unitPrice = unitPrice;
-	this.prodQuantity = prodQuantity;
-	this.imageUrl = imageUrl;
-	this.prodWeight = prodWeight;
-	this.special_specification = special_specification;
-	this.mfgDate = mfgDate;
-	this.prodCategory = prodCategory;
-	this.orderDetails = orderDetails;
-}
+	public String getProdName() {
+		return prodName;
+	}
 
+	public void setProdName(String prodName) {
+		this.prodName = prodName;
+	}
 
-public String getProdName() {
-	return prodName;
-}
+	public String getProdDesc() {
+		return prodDesc;
+	}
 
+	public void setProdDesc(String prodDesc) {
+		this.prodDesc = prodDesc;
+	}
 
-public void setProdName(String prodName) {
-	this.prodName = prodName;
-}
+	public double getUnitPrice() {
+		return unitPrice;
+	}
 
+	public void setUnitPrice(double unitPrice) {
+		this.unitPrice = unitPrice;
+	}
 
-public String getProdDesc() {
-	return prodDesc;
-}
+	public int getProdQuantity() {
+		return prodQuantity;
+	}
 
+	public void setProdQuantity(int prodQuantity) {
+		this.prodQuantity = prodQuantity;
+	}
 
-public void setProdDesc(String prodDesc) {
-	this.prodDesc = prodDesc;
-}
+	public String getImageUrl() {
+		return imageUrl;
+	}
 
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 
-public double getUnitPrice() {
-	return unitPrice;
-}
+	public double getProdWeight() {
+		return prodWeight;
+	}
 
+	public void setProdWeight(double prodWeight) {
+		this.prodWeight = prodWeight;
+	}
 
-public void setUnitPrice(double unitPrice) {
-	this.unitPrice = unitPrice;
-}
+	public String getSpecial_specification() {
+		return special_specification;
+	}
 
+	public void setSpecial_specification(String special_specification) {
+		this.special_specification = special_specification;
+	}
 
-public int getProdQuantity() {
-	return prodQuantity;
-}
+	public LocalDate getMfgDate() {
+		return mfgDate;
+	}
 
+	public void setMfgDate(LocalDate mfgDate) {
+		this.mfgDate = mfgDate;
+	}
 
-public void setProdQuantity(int prodQuantity) {
-	this.prodQuantity = prodQuantity;
-}
+	public Categorys getProdCategory() {
+		return prodCategory;
+	}
 
+	public void setProdCategory(Categorys prodCategory) {
+		this.prodCategory = prodCategory;
+	}
 
-public String getImageUrl() {
-	return imageUrl;
-}
+	public List<OrderDetails> getOrderDetails() {
+		return orderDetails;
+	}
 
+	public void setOrderDetails(List<OrderDetails> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
 
-public void setImageUrl(String imageUrl) {
-	this.imageUrl = imageUrl;
-}
+	@Override
+	public String toString() {
+		return "Products [prodName=" + prodName + ", prodDesc=" + prodDesc + ", unitPrice=" + unitPrice
+				+ ", prodQuantity=" + prodQuantity + ", imageUrl=" + imageUrl + ", prodWeight=" + prodWeight
+				+ ", special_specification=" + special_specification + ", mfgDate=" + mfgDate + ", prodCategory="
+				+ prodCategory + ", orderDetails=" + orderDetails + "]";
+	}
 
-
-public double getProdWeight() {
-	return prodWeight;
-}
-
-
-public void setProdWeight(double prodWeight) {
-	this.prodWeight = prodWeight;
-}
-
-
-public String getSpecial_specification() {
-	return special_specification;
-}
-
-
-public void setSpecial_specification(String special_specification) {
-	this.special_specification = special_specification;
-}
-
-
-public LocalDate getMfgDate() {
-	return mfgDate;
-}
-
-
-public void setMfgDate(LocalDate mfgDate) {
-	this.mfgDate = mfgDate;
-}
-
-
-public Categorys getProdCategory() {
-	return prodCategory;
-}
-
-
-public void setProdCategory(Categorys prodCategory) {
-	this.prodCategory = prodCategory;
-}
-
-
-public List<OrderDetails> getOrderDetails() {
-	return orderDetails;
-}
-
-
-public void setOrderDetails(List<OrderDetails> orderDetails) {
-	this.orderDetails = orderDetails;
-}
-
-
-@Override
-public String toString() {
-	return "Products [prodName=" + prodName + ", prodDesc=" + prodDesc + ", unitPrice=" + unitPrice + ", prodQuantity="
-			+ prodQuantity + ", imageUrl=" + imageUrl + ", prodWeight=" + prodWeight + ", special_specification="
-			+ special_specification + ", mfgDate=" + mfgDate + ", prodCategory=" + prodCategory + ", orderDetails="
-			+ orderDetails + "]";
-}
 	
+
 }
