@@ -3,6 +3,7 @@ package com.app.service.user;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -15,13 +16,24 @@ import org.springframework.stereotype.Service;
 
 import com.app.custom_Exceptions.UserHandlingException;
 import com.app.dto.DeleteAccountDto;
+import com.app.dto.PlaceOrderDto;
+import com.app.dto.ProductDto;
+import com.app.dto.SupplierDto;
+import com.app.dto.UpdatePriceDto;
 import com.app.dto.Userdto;
 import com.app.pojos.Address;
+import com.app.pojos.PlaceOrder;
+import com.app.pojos.Products;
 import com.app.pojos.Role;
+import com.app.pojos.SellerReg;
 import com.app.pojos.User;
 import com.app.repositiory.AddressRepository;
+import com.app.repositiory.IPlaceOrderRepository;
+import com.app.repositiory.ProductRepository;
 import com.app.repositiory.UserRepositiory;
+import com.app.service.ProductInterface;
 import com.app.service.ShoppingCart.IShoppingCartServices;
+import com.app.service.Supplier.ISupplierService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,9 +52,22 @@ public class UserServiceImplement implements IUserService {
 	private ModelMapper mapper;
 	
 	@Autowired
+	private IPlaceOrderRepository placeOderRepo;
+	
+	@Autowired
+	private ISupplierService supplierServices;
+	
+	@Autowired
 	private UserRepositiory userRepository;
 	@Autowired
 	private AddressRepository addressRepo;
+	
+	@Autowired
+	private ProductRepository prodRepo;
+	
+	@Autowired
+	private ProductInterface prodService;
+	
 	@Override
 	public Userdto saveNewUser(Userdto userObj) {
 	
@@ -116,9 +141,39 @@ public class UserServiceImplement implements IUserService {
 		return mapper.map(user, Userdto.class);
 	}
 
+	
 	@Override
-	public Userdto getUserById(int userId) {
-		// TODO Auto-generated method stub
+	public String placeOrderToSeller(PlaceOrderDto placeOrder) {
+
+		String msg = "Order Genrated sucessfully";
+	
+		Long supplierId = placeOrder.getSupplierId();
+		SupplierDto supplierByid = supplierServices.getSupplierById(supplierId);
+		
+		SellerReg supplier = mapper.map(supplierByid, SellerReg.class);
+
+		PlaceOrder newOrder = new PlaceOrder();
+		newOrder.setProduct(placeOrder.getProduct());
+		newOrder.setQuantity(placeOrder.getQuantity());
+		newOrder.setSupplier(supplier);
+		placeOderRepo.save(newOrder);
+		return msg;
+	}
+
+	@Override
+	public String UpdateProdPrice(UpdatePriceDto updatePrice) {
+		String message="Price Of the product updated Successfullly!!";
+		Products productdto=prodService.getProductById(updatePrice.getProductId());
+		Products product=mapper.map(productdto, Products.class);
+		product.setUnitPrice(updatePrice.getUnitPrice());
+		Products saveProduct = prodRepo.save(product);
+		return message;
+		
+	}
+
+	@Override
+	public Userdto getUserById(Long userId) {
+	
 		return null;
 	} 
 }

@@ -27,8 +27,8 @@ public class SellerReg extends User{
 		return "SellerReg [GSTNO=" + GSTNO + ", getId()=" + getId() + ", getFirstName()=" + getFirstName()
 				+ ", getLastName()=" + getLastName() + ", getEmail()=" + getEmail() + ", getAge()=" + getAge()
 				+ ", getPassword()=" + getPassword() + ", getContactNumber()=" + getContactNumber() + ", getUserRole()="
-				+ getUserRole() + ", getDOB()=" + getDOB() + ", getCity()=" + getCity() + ", getState()=" + getState()
-				+ ", getCart()=" + getCart() + ", getAddress()=" + getAddress() + ", toString()=" + "]";
+				+ getUserRole() + ", getDOB()=" + getDOB() + ", getCity()=" +  ", getState()=" 
+				+ ", getCart()=" +  ", getAddress()=" + getAddress() + ", toString()=" + "]";
 	}
 
 	public SellerReg(String gSTNO) {

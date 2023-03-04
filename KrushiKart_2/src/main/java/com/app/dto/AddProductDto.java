@@ -1,5 +1,7 @@
 package com.app.dto;
 
+import javax.validation.constraints.NotNull;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,20 +11,26 @@ import lombok.ToString;
 //@ToString
 public class AddProductDto {
 	
+	private Long id;
+	@NotNull
 	private Long productId;
+	@NotNull
 	private Long customerId;
-	private Long quantity;
+	private Integer quantity;
 	
 	public AddProductDto() {
 		super();
 	}
 
-	public AddProductDto(Long productId, Long customerId, Long quantity) {
+	
+	public AddProductDto(Long id, Long productId, Long customerId, Integer quantity) {
 		super();
+		this.id = id;
 		this.productId = productId;
 		this.customerId = customerId;
 		this.quantity = quantity;
 	}
+
 
 	public Long getProductId() {
 		return productId;
@@ -40,11 +48,11 @@ public class AddProductDto {
 		this.customerId = customerId;
 	}
 
-	public Long getQuantity() {
+	public Integer getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(Long quantity) {
+	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
 	

@@ -27,7 +27,7 @@ public class SellerController {
 	
 	@PostMapping("/register")
 	public ResponseEntity<?> addNewSeller(@RequestBody SellerDto sellerdtoObj){
-		log.info("In Supplier controller : addSupplier");
+//		log.info("In Supplier controller : addSupplier");
 		return new ResponseEntity<>(sellerServices.saveSupplier(sellerdtoObj), HttpStatus.OK);
 	}
 

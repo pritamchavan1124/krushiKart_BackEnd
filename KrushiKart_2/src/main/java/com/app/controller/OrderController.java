@@ -32,19 +32,28 @@ public class OrderController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> getOrder(@PathVariable("id") Long id) throws OrderNotFoundException {
-		log.info("In Order Controller : get Order");
+//		log.info("In Order Controller : get Order");
 		Orders order = orderServices.getOrders(id);
 		return new ResponseEntity<>(order, HttpStatus.OK);
 	}
 	
 	@GetMapping("/userOrder/{userId}")
 
-	public ResponseEntity<?> getOrderList(@PathVariable("userId") int id) {
-		log.info("In Order Controller : get OrderList by user ID");
+	public ResponseEntity<?> getOrderList(@PathVariable("userId") Long id) {
+//		log.info("In Order Controller : get OrderList by user ID");
 		List<Orders> orderList = orderServices.getOrderList(id);
-		log.info("Order List : " + orderList);
+
 		return new ResponseEntity<>(orderList, HttpStatus.OK);
 	}
+	
+	@PostMapping("/place")
+	public ResponseEntity<?> placeOrderByCart(@RequestBody OrderByCartDto orderCart) throws RazorpayException {
+//		log.info("In Order Controller : place OrderBycart");
+		String order = orderServices.createOrderByUserCart(orderCart.getId(), orderCart.getAddress(),
+				orderCart.getPaymentType());
+		return new ResponseEntity<>(order, HttpStatus.OK);
+	}
+
 	
 	
 

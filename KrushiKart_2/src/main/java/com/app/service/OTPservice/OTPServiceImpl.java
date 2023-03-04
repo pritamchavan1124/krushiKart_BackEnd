@@ -18,14 +18,14 @@ public class OTPServiceImpl implements OTPService {
 
 	@Override
 	public boolean setOTP(OTP otp) {
-		log.info("set otp");
+//		log.info("set otp");
 		otpRepo.save(otp);
 		return true;
 	}
 
 	@Override
 	public OTP getOTP(String email) {
-		log.info("get otp");
+//		log.info("get otp");
 		OTP findById = otpRepo.findById(email).orElseThrow(() -> new UserHandlingException("User not found"));
 		return findById;
 	}

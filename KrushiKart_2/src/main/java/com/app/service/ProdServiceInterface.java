@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.app.custom_Exceptions.ProductNotExistsExceptions;
+import com.app.dto.ProductDto;
 import com.app.pojos.Categorys;
 
 import com.app.pojos.Products;
@@ -72,5 +74,17 @@ public class ProdServiceInterface implements ProductInterface {
 		Products product=Repo.findById(prodID).get();
 		return product;
 	}
+
+	public Products findById(Long productId) throws ProductNotExistsExceptions {
+		Optional<Products> optionalProduct=Repo.findById(productId);
+		
+		if(optionalProduct.isEmpty()) {
+			throw new ProductNotExistsExceptions("product id is invalid"+productId);
+		}
+		
+		return optionalProduct.get();
+		
+	}
+
 
 }

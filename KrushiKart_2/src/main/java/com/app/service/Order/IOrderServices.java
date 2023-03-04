@@ -11,6 +11,9 @@ public interface IOrderServices {
 
 	Orders getOrders(Long id);
 
-	List<Orders> getOrderList(int id);
+
+	String createOrderByUserCart(Long id, Address address, PaymentType paymentType) throws RazorpayException;
+
+	List<Orders> getOrderList(Long Userid);
 
 }

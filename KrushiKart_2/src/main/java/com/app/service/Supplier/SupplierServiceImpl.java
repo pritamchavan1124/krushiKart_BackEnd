@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.app.custom_Exceptions.UserHandlingException;
 import com.app.dto.SellerDto;
+import com.app.dto.SupplierDto;
 import com.app.dto.Userdto;
 import com.app.pojos.Address;
 import com.app.pojos.Role;
@@ -36,7 +38,7 @@ public class SupplierServiceImpl implements ISupplierService {
 	private ModelMapper mapper;
 	@Override
 	public SellerDto saveSupplier( SellerDto sellerobj) {
-		log.info("In Supplier service implimentation : Save supplier ");
+//		log.info("In Supplier service implimentation : Save supplier ");
 		
 		SellerReg seller = mapper.map(sellerobj, SellerReg.class);
 		seller.setPassword(passwordEncoder.encode(seller.getPassword()));
@@ -48,13 +50,20 @@ public class SupplierServiceImpl implements ISupplierService {
 	}
 	@Override
 	public List<SellerDto> getAllSelles() {
-		log.info("In Supplier service implimentation : getAllSupplier ");
+//		log.info("In Supplier service implimentation : getAllSupplier ");
 		List<SellerReg> sellerList = sellerRepo.findByUserRole(Role.ROLE_SELLER);
 		List<SellerDto> seller = new ArrayList<>();
 		for (SellerReg sell : sellerList) {
 			seller.add(mapper.map(sell, SellerDto.class));
 		}
 		return seller;
+	}
+	@Override
+	public SupplierDto getSupplierById(Long supplierId) {
+		
+		SellerReg supplier = sellerRepo.findById(supplierId)
+				.orElseThrow(() -> new UserHandlingException("Invalid supplier Id"));
+		return mapper.map(supplier, SupplierDto.class);
 	}
 
 

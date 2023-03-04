@@ -57,7 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	    .antMatchers("/api/home","/api/auth/**","/report/**","/api/user/newpassword").permitAll() 
 	    .and().
 		 authorizeRequests()
-		.antMatchers("/api/prod/add").hasRole("ADMIN")
+//		.antMatchers("/api/prod/add").hasRole("ADMIN")
 		.antMatchers("/api/product/{prodId}").hasRole("ADMIN")
 		.antMatchers("/api/product/purchase").hasRole("CUSTOMER")
 		.antMatchers("/api/product/{catName}", "/auth/**","/report/**").permitAll()

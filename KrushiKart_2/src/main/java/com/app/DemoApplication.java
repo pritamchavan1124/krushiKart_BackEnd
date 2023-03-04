@@ -26,7 +26,7 @@ public class DemoApplication {
 	
 		@Bean
 	public ModelMapper mapper() {
-		log.info("In model mappler ");
+//		log.info("In model mappler ");
 		return new ModelMapper();
 	}
 
@@ -34,7 +34,7 @@ public class DemoApplication {
 
 	@Bean
 	public PasswordEncoder encoder() {
-		log.info("In Password Encoder ");
+//		log.info("In Password Encoder ");
 		return new BCryptPasswordEncoder();
 	}
 

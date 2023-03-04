@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -63,10 +64,14 @@ public class Products extends BaseEntity {
 	private Categorys prodCategory;
 
 	@JsonIgnore
-	@ManyToMany
-	@JoinTable(name = "orders_like", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "orderDetails_id"))
+	@OneToMany
+	//@JoinTable(name = "orders_like", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "orderDetails_id"))
 	private List<OrderDetails> orderDetails = new ArrayList<OrderDetails>();
-
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "products", 
+			cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<CartItem> cartItemList=new ArrayList<CartItem>();
 //	@JsonIgnore
 //	@ManyToMany
 //	@JoinTable(name="seller_prod_likes",
@@ -81,21 +86,44 @@ public class Products extends BaseEntity {
 
 	}
 
-	public Products(String prodName, String prodDesc, double unitPrice, int prodQuantity, String imageUrl,
-			double prodWeight, String special_specification, LocalDate mfgDate, Categorys prodCategory,
-			List<OrderDetails> orderDetails) {
-		super();
-		this.prodName = prodName;
-		this.prodDesc = prodDesc;
-		this.unitPrice = unitPrice;
-		this.prodQuantity = prodQuantity;
-		this.imageUrl = imageUrl;
-		this.prodWeight = prodWeight;
-		this.special_specification = special_specification;
-		this.mfgDate = mfgDate;
-		this.prodCategory = prodCategory;
-		this.orderDetails = orderDetails;
+	
+
+	public List<CartItem> getCartItemList() {
+		return cartItemList;
 	}
+
+
+
+	public void setCartItemList(List<CartItem> cartItemList) {
+		this.cartItemList = cartItemList;
+	}
+
+
+
+	public Products() {
+	super();
+}
+
+
+
+	public Products(String prodName, String prodDesc, double unitPrice, int prodQuantity, String imageUrl,
+		double prodWeight, String special_specification, LocalDate mfgDate, Categorys prodCategory,
+		List<OrderDetails> orderDetails, List<CartItem> cartItemList) {
+	super();
+	this.prodName = prodName;
+	this.prodDesc = prodDesc;
+	this.unitPrice = unitPrice;
+	this.prodQuantity = prodQuantity;
+	this.imageUrl = imageUrl;
+	this.prodWeight = prodWeight;
+	this.special_specification = special_specification;
+	this.mfgDate = mfgDate;
+	this.prodCategory = prodCategory;
+	this.orderDetails = orderDetails;
+	this.cartItemList = cartItemList;
+}
+
+
 
 	public String getProdName() {
 		return prodName;

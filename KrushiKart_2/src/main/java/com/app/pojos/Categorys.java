@@ -44,14 +44,9 @@ public class Categorys extends BaseEntity{
 	private List<Products> productsList = new ArrayList<>();
 	
 
-	public Categorys(String categoryName, String categoryDesc, boolean activeStatus) {
-		super();
-		this.categoryName = categoryName;
-		this.categoryDesc = categoryDesc;
-		this.activeStatus = activeStatus;
-	}
-	
-	
+
+
+
 
 	public Categorys(String categoryName, String categoryDesc, boolean activeStatus, String imageUrl,
 			List<Products> productsList) {
@@ -62,7 +57,12 @@ public class Categorys extends BaseEntity{
 		this.imageUrl = imageUrl;
 		this.productsList = productsList;
 	}
-	
+
+
+
+	public Categorys() {
+		super();
+	}
 
 
 

@@ -49,7 +49,7 @@ public class DeliveryBoy extends User {
 		return "DeliveryBoy [licenseNO=" + licenseNO + ", getId()=" + getId() + ", getFirstName()=" + getFirstName()
 				+ ", getLastName()=" + getLastName() + ", getEmail()=" + getEmail() + ", getAge()=" + getAge()
 				+ ", getPassword()=" + getPassword() + ", getContactNumber()=" + getContactNumber() + ", getUserRole()="
-				+ getUserRole() + ", getDOB()=" + getDOB() + ", getCart()=" + getCart() + ", getAddress()="
+				+ getUserRole() + ", getDOB()=" + getDOB() + ", getCart()=" + ", getAddress()="
 				+ getAddress() + ", toString()=" + super.toString() + 
 				 "]";
 	}

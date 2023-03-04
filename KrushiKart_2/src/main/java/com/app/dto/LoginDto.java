@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+//@Getter
+//@Setter
 public class LoginDto {
 
 	@NotBlank
@@ -20,4 +20,22 @@ public class LoginDto {
 	// for de-serial only
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String Password;
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return Password;
+	}
+
+	public void setPassword(String password) {
+		Password = password;
+	}
+	
+	
 }

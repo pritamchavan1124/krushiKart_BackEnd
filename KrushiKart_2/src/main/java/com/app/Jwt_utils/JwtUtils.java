@@ -26,7 +26,7 @@ public class JwtUtils {
 
 	// will be invoked by Auth controller , upon successful authentication
 	public String generateJwtToken(Authentication authentication) {
-		log.info("generate jwt token " + authentication);
+//		log.info("generate jwt token " + authentication);
 		CustomUserDetails userPrincipal = (CustomUserDetails) authentication.getPrincipal();
 //JWT : userName,issued at ,exp date,digital signature(does not typically contain password , can contain authorities
 		return Jwts.builder() // JWTs : a Factory class , used to create JWT tokens
@@ -57,7 +57,7 @@ public class JwtUtils {
 												// throws exc in case of failures in verification
 			return true;
 		} catch (Exception e) {
-			log.error("Invalid JWT : " + e.getMessage());
+//			log.error("Invalid JWT : " + e.getMessage());
 		}
 
 		return false;
@@ -65,7 +65,7 @@ public class JwtUtils {
 
 	// write a method to create JWT for OTP verify method
 	public String generateJwtToken(User user) {
-		log.info("generate jwt token " + user);
+//		log.info("generate jwt token " + user);
 		String encodedString = Base64.getEncoder().encodeToString(jwtSecret.getBytes());
 		String token = Jwts.builder().setSubject((user.getEmail())).setIssuedAt(new Date())
 				.setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))

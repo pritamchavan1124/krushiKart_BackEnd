@@ -32,11 +32,20 @@ public class OrderDetails extends BaseEntity {
 	@JoinColumn(name = "order_id", referencedColumnName = "id")
 	private Orders order;
 	
-//	@JsonIgnore
-//	@ManyToMany
-//	@JoinColumn(name="product_id")
-//	private List<Products> productlist=new ArrayList<Products>();
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="product_id")
+	private Products product;
+	//private List<Products> productlist=new ArrayList<Products>();
 	
+
+	public Products getProduct() {
+		return product;
+	}
+
+	public void setProduct(Products product) {
+		this.product = product;
+	}
 
 	// min order quantity 1
 	private int quantity;

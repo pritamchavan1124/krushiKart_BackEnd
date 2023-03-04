@@ -9,11 +9,11 @@ import lombok.Setter;
 
 
 public class OrderByCartDto {
-	private int id;
+	private Long id;
 	private Address address;
 	private PaymentType paymentType;
 	
-	public OrderByCartDto(int id, Address address, PaymentType paymentType) {
+	public OrderByCartDto(Long id, Address address, PaymentType paymentType) {
 		super();
 		this.id = id;
 		this.address = address;
@@ -24,11 +24,11 @@ public class OrderByCartDto {
 		super();
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

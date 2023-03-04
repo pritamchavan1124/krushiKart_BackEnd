@@ -6,27 +6,27 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.app.pojos.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.sun.istack.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-//@Setter
-//@Getter
-public class DeliveryBoyDto {
-	
+
+
+public class SupplierDto {
+
 	@JsonProperty(access = Access.READ_ONLY)
 	private Long id;
 
 	@NotBlank
-	@Email(message = "Invalid Email,please Enter valid email!!")
+	@Email(message = "Invalid Email")
 	private String email;
 
 	@NotEmpty(message = "First name must be supplied")
@@ -39,21 +39,21 @@ public class DeliveryBoyDto {
 	@JsonProperty(access = Access.WRITE_ONLY) // for de-serial only
 	private String password;
 
-	@Past(message = "Date of birth  must not be future")
+	@Past(message = "Date of birth  msut be in past")
 	private LocalDate DOB;
 
 	@Digits(message = "Number should contain 10 digits.", fraction = 0, integer = 10)
-	private String contactNumber;
-
-	@NotNull
-	private Role userRole;
+	private String mobNo;
 
 	private String city;
 
 	private String state;
-	
-	private String licenseNO;
-	//private String imagePath;
+
+	@NotNull
+	private Role role;
+
+	@NotBlank(message = "GST number must be supplied")
+	private String GSTNO;
 
 	public Long getId() {
 		return id;
@@ -103,20 +103,12 @@ public class DeliveryBoyDto {
 		DOB = dOB;
 	}
 
-	public String getContactNumber() {
-		return contactNumber;
+	public String getMobNo() {
+		return mobNo;
 	}
 
-	public void setContactNumber(String contactNumber) {
-		this.contactNumber = contactNumber;
-	}
-
-	public Role getUserRole() {
-		return userRole;
-	}
-
-	public void setUserRole(Role userRole) {
-		this.userRole = userRole;
+	public void setMobNo(String mobNo) {
+		this.mobNo = mobNo;
 	}
 
 	public String getCity() {
@@ -135,14 +127,29 @@ public class DeliveryBoyDto {
 		this.state = state;
 	}
 
-	public String getLicenseNO() {
-		return licenseNO;
+	public Role getRole() {
+		return role;
 	}
 
-	public void setLicenseNO(String licenseNO) {
-		this.licenseNO = licenseNO;
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public String getGSTNO() {
+		return GSTNO;
+	}
+
+	public void setGSTNO(String gSTNO) {
+		GSTNO = gSTNO;
+	}
+
+	@Override
+	public String toString() {
+		return "SupplierDto [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", password=" + password + ", DOB=" + DOB + ", mobNo=" + mobNo + ", city=" + city + ", state=" + state
+				+ ", role=" + role + ", GSTNO=" + GSTNO + "]";
 	}
 	
-
+	
 
 }

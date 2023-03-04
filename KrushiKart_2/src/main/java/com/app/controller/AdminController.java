@@ -7,11 +7,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.DeliveryBoyDto;
+import com.app.dto.PlaceOrderDto;
 import com.app.dto.SellerDto;
+import com.app.dto.UpdatePriceDto;
 import com.app.dto.Userdto;
 import com.app.service.DeliveryBoy.IDeliveryBoyService;
 import com.app.service.Supplier.ISupplierService;
@@ -38,22 +42,35 @@ public class AdminController {
 	@GetMapping("/customers")
 	public ResponseEntity<?> getCustomerList() {
 		List<Userdto> listCustomer = userServices.getAllCustomer();
-		log.info("list :" + listCustomer.toString());
+//		log.info("list :" + listCustomer.toString());
 		return new ResponseEntity<>(listCustomer, HttpStatus.OK);
 	}
 	
 	@GetMapping("/sellers")
 	public ResponseEntity<?> getSellerList(){
 		List<SellerDto> sellerList=sellerServices.getAllSelles();
-		log.info("list :" + sellerList.toString());
+//		log.info("list :" + sellerList.toString());
 		return new ResponseEntity<>(sellerList,HttpStatus.OK);
 	}
 	// Add a method to get all customer list
 	@GetMapping("/deliveryboys")
 	public ResponseEntity<?> getDeliveryBoysList() {
 		List<DeliveryBoyDto> listDBoy = deliveryBoyService.getAllDeliveryBoy();
-		log.info("list :" + listDBoy.toString());
+//		log.info("list :" + listDBoy.toString());
 		return new ResponseEntity<>(listDBoy, HttpStatus.OK);
+	}
+	
+	@PostMapping("/placeorder")
+	public ResponseEntity<?> generateOrder(@RequestBody PlaceOrderDto placeOrder) {
+		String msg = userServices.placeOrderToSeller(placeOrder);
+		return new ResponseEntity<>(msg, HttpStatus.OK);
+	}
+	
+	@PostMapping("/updateprice")
+	public ResponseEntity<?> updatePrice(@RequestBody UpdatePriceDto updatePrice) {
+
+		userServices.UpdateProdPrice(updatePrice);
+		return new ResponseEntity<>("ok", HttpStatus.OK);
 	}
 
 }
