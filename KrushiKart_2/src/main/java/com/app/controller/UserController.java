@@ -141,7 +141,7 @@ public class UserController {
 	public String newPassword(@RequestBody @Valid NewPasswordDto newpassDto) {
 		Userdto user = userService.getUserByEmail(newpassDto.getEmail());
 		User newUser = mapper.map(user, User.class);
-		newUser.setPassword(encoder.encode(newpassDto.getNewPassword()));
+		newUser.setPassword(encoder.encode(newpassDto.getPassword()));
 		userRepo.save(newUser);
 		otpService.deleteById(newpassDto.getEmail());
 		return "Password changed successfully....";

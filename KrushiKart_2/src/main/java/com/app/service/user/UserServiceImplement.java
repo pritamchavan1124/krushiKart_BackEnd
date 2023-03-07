@@ -71,7 +71,7 @@ public class UserServiceImplement implements IUserService {
 	@Override
 	public Userdto saveNewUser(Userdto userObj) {
 	
-		log.info("In user service implimentation : Save user ");
+//		log.info("In user service implimentation : Save user ");
 		// map dto --> entity
 		Address address = userObj.getAddress();
 		addressRepo.save(address);

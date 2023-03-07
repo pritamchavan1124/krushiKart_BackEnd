@@ -14,7 +14,7 @@ public class NewPasswordDto {
 	private String email;
 
 	@NotNull
-	private String newPassword;
+	private String password;
 
 	public String getEmail() {
 		return email;
@@ -24,13 +24,15 @@ public class NewPasswordDto {
 		this.email = email;
 	}
 
-	public String getNewPassword() {
-		return newPassword;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setNewPassword(String newPassword) {
-		this.newPassword = newPassword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
+
+	
 	
 	
 }

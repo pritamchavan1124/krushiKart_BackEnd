@@ -31,7 +31,7 @@ public class EmailSendingServiceImpl implements IEmailSendingService {
 
 		Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(from, "jsuhzmccjuyrayqo");
+				return new PasswordAuthentication(from, "qhjbmayoknvmjmon");
 			}
 		});
 

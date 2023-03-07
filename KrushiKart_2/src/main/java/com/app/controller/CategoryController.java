@@ -29,7 +29,7 @@ public class CategoryController {
 	}
 	
 	@PostMapping("/add")
-	public void addNewProduct(@ RequestBody Categorys categoryObj) {
+	public void addNewProduct(@RequestBody Categorys categoryObj) {
 		categoryImpl.addNewCategoryInToList(categoryObj);
 	}
 	
