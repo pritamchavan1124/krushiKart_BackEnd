@@ -34,8 +34,8 @@ public class ProductController {
 		return prodImpl.getAllSeedsData();
 	}
 
-	@PostMapping("/add")
-	public void addNewProduct(@RequestBody Products Obj,String catName) {
+	@PostMapping("/add/{catName}")
+	public void addNewProduct(@RequestBody Products Obj,@PathVariable String catName) {
 		prodImpl.addNewSeeds(Obj,catName);
 	}
 
